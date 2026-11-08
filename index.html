@@ -493,4 +493,12 @@ async function restoreAnalysis(it,bl){const a=it.a;if(a&&typeof a.id==="string"&
   return{id:a.id,f,...build(f,H),ph:/^[0-9a-f]{16}$/.test(a.ph||"")?a.ph:phash(await createImageBitmap(bl)),rv:RV}}return analyze(bl)}
 setTimeout(sizeInfo,800);
 (async()=>{await openDB();const all=await dbAll(),mt=all.find(x=>x.id==="__meta");if(mt)meta={...meta,...mt};beasts=all.filter(x=>x.id!=="__meta").sort((a,b)=>b.at-a.at);for(const b of beasts)if(b.rv!==RV&&b.score!=null&&b.f){b.rarity=RAR[rarIdx(b.score,b.f)];b.skill.cost=10+RAR.indexOf(b.rarity)*3;b.rv=RV;dbPut({...b,_u:undefined})}for(const b of beasts)if(!b.th){try{b.th=await mkTh(b.blob);dbPut({...b,_u:undefined})}catch(e){}}refresh();for(const b of beasts)if(!b.ph){try{b.ph=phash(await createImageBitmap(b.blob,{imageOrientation:"from-image"}));dbPut({...b,_u:undefined})}catch(e){}}})();
+</script>
+<script>
+// オフライン対応（Service Worker登録）
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
 </script></body></html>
