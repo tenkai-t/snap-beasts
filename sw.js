@@ -1,7 +1,7 @@
 // SNAP BEASTS Service Worker（オフライン対応）
 // 初回アクセス時に本体とアイコンをキャッシュし、オフラインでも遊べるようにする。
 // ページ本体はオンライン時に最新を取りに行き、キャッシュも更新する（更新が届く仕組み）。
-const CACHE_NAME = 'snap-beasts-v1';
+const CACHE_NAME = 'snap-beasts-v2';
 const CORE_FILES = [
   './',
   './index.html',
